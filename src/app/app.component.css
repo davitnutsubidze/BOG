@@ -1,0 +1,46 @@
+@font-face {
+  font-family: "BOGMtavruli";
+  src: url("../assets/fonts/BOGMtavruli.woff") format("woff")
+}
+
+@font-face {
+  font-family: "BOGNusxuri";
+  src: url("../assets/fonts/BOGNusxuri.woff") format("woff")
+}
+
+.container {
+  width: 980px;
+  border: 1px solid red;
+  padding: 0px;
+}
+
+.logo {
+  margin-top: 25px;
+}
+
+.menunav{
+  border-bottom: 2px solid #f47920;
+  margin-bottom: 0px;
+  border-radius: 0;
+}
+.menu {
+  float: right;
+}
+
+.menu li {
+  height: 100px;
+  width: 200px;
+  display: table-cell;
+  list-style: none;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  font-family: BOGMtavruli;
+  color: #b5b6b3;
+  font-size: 14px;
+}
+
+.menu li.active {
+  background-color: #f47920;
+  color: white;
+}

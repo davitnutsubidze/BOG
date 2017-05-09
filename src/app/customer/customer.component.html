@@ -1,0 +1,29 @@
+<h1>Add new Customer</h1>
+
+<!--basic information-->
+
+<form (ngSubmit)="onSubmit()" #customerForm="ngForm">
+
+  <div class="row">
+    <div class="col-xs-6">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name">
+    </div>
+    <div class="col-xs-6">
+      <label for="name">Last name</label>
+      <input type="text" class="form-control" id="lastname">
+    </div>
+  </div>
+<br>
+  <div class="row">
+    <div class="col-xs-6">
+      <label for="name">Personal ID</label>
+      <input type="text" class="form-control" id="personalid">
+    </div>
+    <div class="col-xs-6">
+      <label for="name">Birth date</label>
+      <input type="text" class="form-control" id="birthdate">
+    </div>
+  </div>
+
+</form>

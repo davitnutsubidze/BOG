@@ -1,3 +1,21 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+  <div class="navbar menunav">
+    <img src="https://login.bog.ge/ibank/img/logo.png" class="logo" alt="">
+    <ul class="menu">
+      <li routerLink="/customer" routerLinkActive="active">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>
+        ADD CUSTOMER
+      </li>
+      <li routerLink="/product" routerLinkActive="active">
+        <span class="glyphicon glyphicon-file" aria-hidden="true"></span><br>
+        PRODUCT
+      </li>
+      <li routerLink="/search" routerLinkActive="active">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span><br>
+        CUSOMER LIST
+      </li>
+    </ul>
+  </div>
+
+  <router-outlet></router-outlet>
+</div>
