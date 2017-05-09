@@ -6,8 +6,11 @@ import { MyDatePickerModule } from 'mydatepicker';
 
 import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
+import { ContactInformation } from './customer/contact-information/contact-information';
+import { AdressInformation } from './customer/adress-information/adress-information';
 import { ProductComponent } from './product/product.component';
 import { SearchComponent } from './search/search.component';
+
 
 import { AppRoutingModule }     from './app-routing.module';
 
@@ -16,7 +19,9 @@ import { AppRoutingModule }     from './app-routing.module';
     AppComponent,
     CustomerComponent,
     ProductComponent,
-    SearchComponent
+    SearchComponent,
+    ContactInformation,
+    AdressInformation
   ],
   imports: [
     BrowserModule,
