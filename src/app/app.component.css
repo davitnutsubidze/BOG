@@ -8,21 +8,31 @@
   src: url("../assets/fonts/BOGNusxuri.woff") format("woff")
 }
 
+:host >>> .nopadding {
+  padding: 0 !important;
+}
+
+:host >>> .table-tools {
+  width: 45px;
+  text-align: center;
+}
+
 .container {
-  width: 980px;
-  border: 1px solid red;
-  padding: 0px;
+  width: 1000px;
+  background: white;
+  padding: 0px 10px;
 }
 
 .logo {
   margin-top: 25px;
 }
 
-.menunav{
+.menunav {
   border-bottom: 2px solid #f47920;
   margin-bottom: 0px;
   border-radius: 0;
 }
+
 .menu {
   float: right;
 }
@@ -35,7 +45,7 @@
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  font-family: BOGMtavruli;
+  font-family: 'BOGMtavruli';
   color: #b5b6b3;
   font-size: 14px;
 }
@@ -44,3 +54,4 @@
   background-color: #f47920;
   color: white;
 }
+

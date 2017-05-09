@@ -1,12 +1,85 @@
-h1{
-  font-size: 18px;
+h1 {
+  font-size: 25px;
   font-family: 'BOGMtavruli';
   color: #f47922;
   text-transform: uppercase;
 }
 
-label{
-  font-family:BOGNusxuri;
+h2 {
+  font-size: 16px;
+  font-weight: bold;
+
+}
+
+label {
+  font-family: BOGNusxuri;
   color: #7b828b;
   font-weight: normal;
 }
+
+#contact-information-table tbody tr td, #adress-information-table tbody tr td {
+  padding-left: 0px;
+}
+
+.new-contact {
+  float: right;
+  margin-top: -35px;
+}
+.submit-button-border{
+  border:1px solid black;
+}
+.submit-button {
+  width: 362px;
+  height: 62px;
+  position: relative;
+  display: inline-block;
+  margin: 0 10px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px #ddd;
+  background: white;
+  left: 50%;
+  margin-left: -181px;
+}
+.submit-button span{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  color: #f47922;
+  font-size: 18px;
+  margin-top:18px;
+}
+.submit-button svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.submit-button svg line {
+  stroke-width: 2;
+  stroke: #f47922;
+  fill: none;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.submit-button:hover svg line.top {
+  -webkit-transform: translateX(-250px);
+  transform: translateX(-250px);
+}
+
+.submit-button:hover svg line.bottom {
+  -webkit-transform: translateX(250px);
+  transform: translateX(250px);
+}
+
+.submit-button:hover svg line.left {
+  -webkit-transform: translateY(-40px);
+  transform: translateY(-40px);
+}
+
+.submit-button:hover svg line.right {
+  -webkit-transform: translateY(42px);
+  -webkit-transform: translateY(42px);
+  transform: translateY(42px);
+}
+
