@@ -25,6 +25,10 @@ label {
   float: right;
   margin-top: -35px;
 }
+:host >>> .table{
+  margin-bottom:60px;
+}
+
 .submit-button-border{
   border:1px solid black;
 }
@@ -82,4 +86,9 @@ label {
   -webkit-transform: translateY(42px);
   transform: translateY(42px);
 }
+.ems{
+  color: red;
+}
+
+
 

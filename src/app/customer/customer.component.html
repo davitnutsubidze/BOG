@@ -1,17 +1,19 @@
 <h1>Add new Customer</h1>
 
 
-<form (ngSubmit)="onSubmit()" #customerForm="ngForm">
+<form >
 
   <h2>Personal information</h2>
   <div class="row">
     <div class="col-xs-6">
-      <label for="name">Name</label>
-      <input type="text" class="form-control" id="name">
+      <label for="name">Name </label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="customer.name">
+      <span class="ems" [hidden]="validation(customer.name)">Name is required</span>
     </div>
     <div class="col-xs-6">
       <label for="name">Last name</label>
-      <input type="text" class="form-control" id="lastname">
+      <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="customer.lastname">
+      <span class="ems" [hidden]="validation(customer.lastname)">Last name is required</span>
     </div>
   </div>
 
@@ -20,7 +22,8 @@
   <div class="row">
     <div class="col-xs-6">
       <label for="name">Personal ID</label>
-      <input type="text" class="form-control" id="personalid">
+      <input type="text" class="form-control" id="personalid" name="personalid" [(ngModel)]="customer.personalid">
+      <span class="ems" [hidden]="validation(customer.personalid)">Last name is required</span>
     </div>
     <div class="col-xs-6">
       <label for="name">Phone number</label>
@@ -74,10 +77,10 @@
   </div>
   <br>
 
-  <contact-information></contact-information>
-  <adress-information></adress-information>
+  <contact-information [contactArr]="contactArr"></contact-information>
+  <adress-information [adressArr]="adressArr"></adress-information>
 
-  <div class="submit-button">
+  <div class="submit-button" (click)="addCustomer()">
     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
       <line class="top" x1="250" y1="0" x2="612" y2="0"/>
       <line class="left" x1="0" y1="40" x2="0" y2="102"/>
