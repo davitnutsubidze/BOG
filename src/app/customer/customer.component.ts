@@ -19,22 +19,28 @@ export class CustomerComponent implements OnInit {
     name: '',
     lastname: '',
     personalid: '',
-
+    parentname: '',
+    gender: '',
+    birhdate: '',
+    materialstatus: '',
+    education: ''
   };
 
   private myDatePickerOptions: IMyOptions = {
-    dateFormat: 'dd.mm.yyyy',
+    todayBtnTxt: 'Today',
+    dateFormat: 'dd.mm.yyyy'
   };
 
   private model: Object = { date: { year: 2018, month: 10, day: 9 } };
 
   constructor() { }
   ngOnInit(): void {
-    console.log(this.customer);
+    window.localStorage.setItem("name","111");
+    localStorage.setItem('whatever', 'something');
   }
 
   validation(value) {
-    console.log(value);
+    // console.log(value);
     if(this.submited && value === ''){
       return false
     }
@@ -45,8 +51,7 @@ export class CustomerComponent implements OnInit {
   }
   addCustomer() {
     this.submited = true;
-    // console.log("save");
-    // console.log(this.contactArr);
-    // console.log(this.adressArr);
+    localStorage.setItem("name2","david2");
+
   }
 }
