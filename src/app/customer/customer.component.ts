@@ -1,57 +1,99 @@
 /**
  * Created by David on 5/9/2017.
  */
-import { Component, OnInit} from '@angular/core';
-import { Customer }    from '../shared/customer';
+import {Component, OnInit} from '@angular/core';
 import {IMyOptions} from 'mydatepicker';
+import {CustomerService} from './customer.service';
+import {Customer} from './customer';
+import {FormGroup, FormControl, AbstractControl} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'customer',
   templateUrl: './customer.component.html',
-  styleUrls: [ './customer.component.css' ]
+  providers: [CustomerService],
+  styleUrls: ['./customer.component.css']
 })
-export class CustomerComponent implements OnInit {
-
-  contactArr = [];
-  adressArr = [];
-  submited: boolean = false;
-  customer = {
-    name: '',
-    lastname: '',
-    personalid: '',
-    parentname: '',
-    gender: '',
-    birhdate: '',
-    materialstatus: '',
-    education: ''
-  };
-
-  private myDatePickerOptions: IMyOptions = {
+export class CustomerComponent implements OnInit
+{
+  submitted: boolean = false;
+  form: FormGroup;
+  customer: Customer = new Customer();
+  jsonData: any;
+  myDatePickerOptions: IMyOptions = {
     todayBtnTxt: 'Today',
     dateFormat: 'dd.mm.yyyy'
   };
 
-  private model: Object = { date: { year: 2018, month: 10, day: 9 } };
-
-  constructor() { }
-  ngOnInit(): void {
-    window.localStorage.setItem("name","111");
-    localStorage.setItem('whatever', 'something');
+  constructor(private activatedRoute: ActivatedRoute, private customerService: CustomerService)
+  {
   }
 
-  validation(value) {
-    // console.log(value);
-    if(this.submited && value === ''){
-      return false
+  ngOnInit()
+  {
+    this.activatedRoute.data.subscribe((resolvedData: any) => {
+      this.jsonData = resolvedData.jsonData[0];
+    });
+
+    this.createForm();
+  }
+
+  validateControl(control: AbstractControl, controlName: string)
+  {
+    if (control.value === '' || control.value === null || (Array.isArray(control.value) && !control.value.length) ) {
+      return {
+        required: this.jsonData[controlName] && this.jsonData[controlName].errors && this.jsonData[controlName].errors.required
+      }
     }
-    else{
-      return true
+
+    return null;
+  }
+
+  createForm() {
+    let form = new FormGroup({});
+
+    this.customer.getNewCustomerFields().forEach((controlName: any) => {
+      form.addControl(controlName, new FormControl(this.customer[controlName], (control: AbstractControl) => {
+        return this.validateControl(control, controlName);
+      }));
+    });
+
+    this.form = form;
+  }
+
+  showError(name: string) {
+    return this.form.controls[name] && this.getError(name) && this.submitted;
+  }
+
+  getError(name: string) {
+    return this.form.controls[name].errors && this.form.controls[name].errors['required'];
+  }
+
+  addCustomer()
+  {
+    this.form.controls['contacts'].updateValueAndValidity();
+    this.form.controls['addresses'].updateValueAndValidity();
+    if(this.form.valid) {
+      this.customerService.add(this.form.value).then(() =>
+      {
+        console.log("sucsess");
+      }, (error) =>
+      {
+        console.log(error);
+        alert(error.target.error.message);
+      })
     }
+    else {
+      let alertMessage = this.getError("contacts") || this.getError("addresses");
+      if (alertMessage) {
+        alert(alertMessage);
 
+      }
+    }
+    this.submitted = true;
   }
-  addCustomer() {
-    this.submited = true;
-    localStorage.setItem("name2","david2");
 
-  }
+
+
+
 }

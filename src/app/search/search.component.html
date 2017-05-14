@@ -1,1 +1,71 @@
-search
+<h1>Customer list</h1>
+<table class="table table-responsive table-hover" *ngIf="customers">
+  <thead>
+  <tr>
+    <th style="width:30px;">#</th>
+    <th style="width:120px;">Personal ID</th>
+    <th style="width:120px;">Name</th>
+    <th style="width:150px;">Last name</th>
+    <th style="width:70px;">Gender</th>
+    <th>Birth date</th>
+    <th>Material Status</th>
+    <th>Education</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <th></th>
+    <th><input type="text" class="form-control" placeholder="ID" name="personalID" [(ngModel)]="filterCustomer.personalId"></th>
+    <th><input type="text" class="form-control" placeholder="name" name="name" [(ngModel)]="filterCustomer.name"></th>
+    <th><input type="text" class="form-control" placeholder="last name" name="lastname" [(ngModel)]="filterCustomer.lastName"></th>
+    <th>
+      <select class="form-control" name="gender" [(ngModel)]="filterCustomer.gender">
+        <option value="">Select one</option>
+        <option [ngValue]="item" *ngFor="let item of jsonData.gender.data">{{item}}</option>
+      </select>
+    </th>
+    <th>
+
+    </th>
+    <th>
+      <select class="form-control" name="maritalstatus" [(ngModel)]="filterCustomer.maritalStatus">
+        <option value="">Select one</option>
+        <option [ngValue]="item" *ngFor="let item of jsonData.maritalStatus.data">{{item}}</option>
+      </select>
+    </th>
+    <th>
+      <select class="form-control" name="education"  [(ngModel)]="filterCustomer.education">
+        <option value="">Select one</option>
+        <option [ngValue]="item" *ngFor="let item of jsonData.education.data">{{item}}</option>
+      </select>
+    </th>
+    <th></th>
+  </tr>
+  </tbody>
+  <tbody *ngFor="let customer of customers | searchPipe: filterCustomer; let i = index;">
+  <tr  id="row{{i}}" >
+    <td>{{i+1}}</td>
+    <td>{{customer.personalid}}</td>
+    <td>{{customer.name}}</td>
+    <td>{{customer.lastname}}</td>
+    <td>{{customer.gender}}</td>
+    <td>{{customer.birhdate}}</td>
+    <td>{{customer.materialstatus}}</td>
+    <td>{{customer.education}}</td>
+    <td class="clickable" data-toggle="collapse" attr.data-target=".row{{i}}"><i class="glyphicon glyphicon-plus" ></i></td>
+  </tr>
+  <tr class="collapse row{{i}}">
+    <td>- </td>
+    <td>data</td>
+    <td>data</td>
+    <td>data</td>
+    <td>data</td>
+    <td>data</td>
+    <td>data</td>
+    <td>data</td>
+    <td>data</td>
+  </tr>
+  </tbody>
+
+</table>

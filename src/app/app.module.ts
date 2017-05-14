@@ -3,16 +3,19 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MyDatePickerModule } from 'mydatepicker';
+import {SearchPipe} from './search/search.pipe'
 
 import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
-import { ContactInformation } from './customer/contact-information/contact-information';
-import { AdressInformation } from './customer/adress-information/adress-information';
+import { ContactInformationComponent } from './customer/contact-information/contact-information.component';
+import { AddressInformationComponent } from './customer/address-information/address-information.component';
 import { ProductComponent } from './product/product.component';
 import { SearchComponent } from './search/search.component';
-
+import {IndexedDBService} from './shared/services/indexeddb'
 
 import { AppRoutingModule }     from './app-routing.module';
+import {CustomerResolver} from './customer/customer.resolver';
+import {DBResolver} from './db.resolver';
 
 @NgModule({
   declarations: [
@@ -20,8 +23,9 @@ import { AppRoutingModule }     from './app-routing.module';
     CustomerComponent,
     ProductComponent,
     SearchComponent,
-    ContactInformation,
-    AdressInformation
+    ContactInformationComponent,
+    AddressInformationComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,7 @@ import { AppRoutingModule }     from './app-routing.module';
     AppRoutingModule,
     MyDatePickerModule
   ],
-  providers: [],
+  providers: [IndexedDBService, CustomerResolver, IndexedDBService, DBResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

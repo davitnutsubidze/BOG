@@ -1,1 +1,180 @@
-product
+<h1>Add product</h1>
+
+<div class="row"  >
+  <div class="col-xs-6">
+    <input type="text" class="form-control"name="search-id" placeholder="Personal ID" [(ngModel)]="customer.personalId">
+  </div>
+  <div class="col-xs-6">
+    <button type="button" class="btn btn-default" (click)="search()">
+      <span class="glyphicon glyphicon-search"></span> Search
+    </button>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-xs-6">
+    <label>Name </label>
+    <input type="text" class="form-control" disabled [value]="customer.name">
+  </div>
+  <div class="col-xs-6">
+    <label>Last name</label>
+    <input type="text" class="form-control" disabled [value]="customer.lastName">
+  </div>
+</div>
+<br>
+<form [formGroup]="form" *ngIf="form">
+<div class="row">
+  <div class="col-xs-6">
+    <label>Choose product </label>
+    <select class="form-control" formControlName="productType" (ngModelChange)="onProductSelect($event)">
+      <option [ngValue]="0">Credit card</option>
+      <option [ngValue]="1">Loan</option>
+      <option [ngValue]="2">Insurance</option>
+    </select>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-xs-6">
+    <label>RegistrationDate </label>
+    <my-date-picker formControlName="registrationDate" [options]="myDatePickerOptions" required></my-date-picker>
+  </div>
+  <div class="col-xs-6">
+    <label>End date</label>
+    <my-date-picker  formControlName="endDate" [options]="myDatePickerOptions" required></my-date-picker>
+  </div>
+</div>
+
+<br>
+<div class="row">
+  <div class="col-xs-6">
+    <label>Product price </label>
+    <input type="text" class="form-control" formControlName="price">
+  </div>
+  <div class="col-xs-6">
+    <label>Product currency</label>
+    <select  class="form-control" formControlName="currency">
+      <option value="GEL">GEL</option>
+      <option value="USD">USD</option>
+      <option value="EUR">EUR</option>
+    </select>
+  </div>
+</div>
+<br>
+  <div [ngSwitch]="form.controls.productType.value">
+    <!--credit card-->
+    <div *ngSwitchCase="0">
+      <div class="row">
+        <div class="col-xs-6">
+          <label>Card class</label>
+          <select  class="form-control" formControlName="cardClass">
+            <option value="Visa">Visa</option>
+            <option value="MasterCard">MasterCard</option>
+            <option value="Amex">Amex</option>
+          </select>
+
+        </div>
+        <div class="col-xs-6">
+          <label>Card number</label>
+          <input type="text" class="form-control" formControlName="cardNumber">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-xs-6">
+          <label>Card name</label>
+          <input type="text" class="form-control" formControlName="cardName">
+        </div>
+      </div>
+    </div>
+    <!--loan-->
+    <div *ngSwitchCase="1">
+      <div class="row">
+        <div class="col-xs-6">
+          <label>Loan type</label>
+          <select  class="form-control" formControlName="loanType">
+            <option value="Consumer">Consumer</option>
+            <option value="Installment">Installment</option>
+            <option value="Mortgage">Mortgage</option>
+          </select>
+
+        </div>
+        <div class="col-xs-6">
+          <label>Contract number</label>
+          <input type="text" class="form-control" formControlName="contractNumber">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-xs-6">
+          <label>Interest rate</label>
+          <input type="text" class="form-control" formControlName="interestRate">
+        </div>
+        <div class="col-xs-6">
+          <label>Payment type</label>
+          <select  class="form-control" formControlName="paymentType">
+            <option value="Annuity">Annuity</option>
+            <option value="At the end of the term">At the end of the term</option>
+            <option value="Irregular">Irregular</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!--insurance-->
+    <div *ngSwitchCase="2">
+      <div class="row">
+        <div class="col-xs-6">
+          <label>Insurance type</label>
+          <select  class="form-control" formControlName="insuranceType">
+            <option value="Life">Life</option>
+            <option value="Real estate">Real estate</option>
+            <option value="Car">Car</option>
+          </select>
+
+        </div>
+        <div class="col-xs-6">
+          <label>Insurer</label>
+          <select  class="form-control" formControlName="insurer">
+            <option value="GPI">GPI</option>
+            <option value="ALDAGI">ALDAGI</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-xs-6">
+          <label>Policy number</label>
+          <input type="text" class="form-control" formControlName="policyNumber">
+        </div>
+        <div class="col-xs-6">
+          <label>Insurance premium</label>
+          <input type="text" class="form-control"  formControlName="insurancePremium">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-xs-6">
+          <label>Franchise</label>
+          <input type="text" class="form-control" formControlName="franchise">
+        </div>
+      </div>
+
+    </div>
+    <br><br>
+
+  </div>
+
+</form>
+
+<div class="submit-button" (click)="addProduct()">
+  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+    <line class="top" x1="250" y1="0" x2="612" y2="0"/>
+    <line class="left" x1="0" y1="40" x2="0" y2="102"/>
+    <line class="bottom" x1="112" y1="62" x2="-250" y2="62"/>
+    <line class="right" x1="362" y1="-40" x2="362" y2="22"/>
+  </svg>
+  <span>SAVE INFORMATION</span>
+</div>
+<br><br>
+

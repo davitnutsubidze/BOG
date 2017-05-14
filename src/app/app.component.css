@@ -17,11 +17,98 @@
   text-align: center;
 }
 
+:host >>> h1 {
+  font-size: 25px;
+  font-family: 'BOGMtavruli';
+  color: #f47922;
+  text-transform: uppercase;
+}
+:host >>> h2 {
+  font-size: 16px;
+  font-weight: bold;
+
+}
+
+:host >>> label {
+  font-family: BOGNusxuri;
+  color: #7b828b;
+  font-weight: normal;
+}
+:host >>> .new-contact {
+  float: right;
+  margin-top: -35px;
+}
+:host >>> .table{
+  margin-bottom:60px;
+}
+
+:host >>> .submit-button-border{
+  border:1px solid black;
+}
+:host >>> .submit-button {
+  width: 362px;
+  height: 62px;
+  position: relative;
+  display: inline-block;
+  margin: 0 10px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px #ddd;
+  background: white;
+  left: 50%;
+  margin-left: -181px;
+}
+:host >>> .submit-button span{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  color: #f47922;
+  font-size: 18px;
+  margin-top:18px;
+}
+:host >>> .submit-button svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+:host >>> .submit-button svg line {
+  stroke-width: 2;
+  stroke: #f47922;
+  fill: none;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+:host >>> .submit-button:hover svg line.top {
+  -webkit-transform: translateX(-250px);
+  transform: translateX(-250px);
+}
+
+:host >>> .submit-button:hover svg line.bottom {
+  -webkit-transform: translateX(250px);
+  transform: translateX(250px);
+}
+
+:host >>> .submit-button:hover svg line.left {
+  -webkit-transform: translateY(-40px);
+  transform: translateY(-40px);
+}
+
+:host >>> .submit-button:hover svg line.right {
+  -webkit-transform: translateY(42px);
+  -webkit-transform: translateY(42px);
+  transform: translateY(42px);
+}
+:host >>> .ems{
+  color: red;
+}
 .container {
   width: 1000px;
   background: white;
   padding: 0px 10px;
 }
+
+
 
 .logo {
   margin-top: -16px;

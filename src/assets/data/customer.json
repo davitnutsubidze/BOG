@@ -1,0 +1,50 @@
+{
+  "name": {
+    "errors": {
+      "required": "Name is required"
+    }
+  },
+  "lastName": {
+    "errors": {
+      "required": "Last name is required"
+    }
+  },
+  "personalId": {
+    "errors": {
+      "required": "Personal ID is required"
+    }
+  },
+  "gender": {
+    "data":["Male","Female"],
+    "errors": {
+      "required": "Gender is required"
+    }
+  },
+  "birthDate": {
+    "errors": {
+      "required": "Birth date is required"
+    }
+  },
+  "maritalStatus": {
+    "data":["Married", "Single", "Divorced"],
+    "errors": {
+      "required": "Marital status is required"
+    }
+  },
+  "education": {
+    "data":["High School","Bachelor's Degree","Master's Degree","Doctorate Degree"],
+    "errors": {
+      "required":"Education is required"
+    }
+  },
+  "contacts": {
+    "errors": {
+      "required":"Please add your contact information"
+    }
+  },
+  "addresses": {
+    "errors": {
+      "required":"Please add your address information"
+    }
+  }
+}

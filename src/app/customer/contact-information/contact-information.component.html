@@ -1,11 +1,10 @@
 <h2>Contact information</h2>
+
 <button type="button" class="btn btn-warning btn-md new-contact"  data-title="new" data-toggle="modal" data-target="#contactnew">New Contact</button>
 <br>
 <div class="col-md-12 nopadding">
   <div class="table-responsive">
-
     <table id="contact-information-table" class="table table-bordred table-striped">
-
       <thead>
       <th>#</th>
       <th>Phone Number</th>
@@ -14,9 +13,8 @@
       <th class="table-tools">Edit</th>
       <th class="table-tools">Delete</th>
       </thead>
-
       <tbody>
-      <tr *ngFor="let contact of contactArr; let i = index">
+      <tr *ngFor="let contact of contacts; let i = index">
         <td>{{i+1}}</td>
         <td>{{contact.phone}}</td>
         <td>{{contact.fax}}</td>
@@ -32,10 +30,7 @@
           </p>
         </td>
       </tr>
-
-
       </tbody>
-
     </table>
 
     <!--add contact modal-->
@@ -52,7 +47,6 @@
               <input class="form-control " type="text" name="phone" placeholder="Phone number" formControlName="phone">
             </div>
             <div class="form-group">
-
               <input class="form-control " type="text" name="fax" placeholder="Fax" formControlName="fax">
             </div>
             <div class="form-group">
@@ -63,9 +57,7 @@
             <button type="button" class="btn btn-warning btn-lg"  style="width: 100%;" (click)="addNewContact(form.value)"><span class="glyphicon glyphicon-ok-sign"></span> Add new contact</button>
           </div>
         </div>
-        <!-- /.modal-content -->
       </div>
-      <!-- /.modal-dialog -->
     </div>
     </form>
 
@@ -83,7 +75,6 @@
                 <input class="form-control " type="text" name="phone" placeholder="Phone number" formControlName="phone">
               </div>
               <div class="form-group">
-
                 <input class="form-control " type="text" name="fax" placeholder="Fax" formControlName="fax">
               </div>
               <div class="form-group">
@@ -94,9 +85,7 @@
               <button type="button" class="btn btn-warning btn-lg"  style="width: 100%;" (click)="updateContact(form.value)"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
             </div>
           </div>
-          <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
       </div>
     </form>
 
