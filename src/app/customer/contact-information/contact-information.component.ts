@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import {ContactInformation} from './contact-information'
 
@@ -8,10 +8,10 @@ import {ContactInformation} from './contact-information'
   styleUrls: ['contact-information.component.css']
 })
 
-export class ContactInformationComponent
+export class ContactInformationComponent implements OnInit
 {
-  form;
-  @Input() contacts = [];
+  form: FormGroup;
+  @Input() contacts: Array<ContactInformation> = [];
   selectedIndex: number;
 
   constructor()
@@ -22,7 +22,7 @@ export class ContactInformationComponent
   {
     var obj = new ContactInformation(598506636, '+99559850663', 'davit@yahoo.com');
     this.contacts.push(obj);
-    this.clearForms();
+    this.createForms();
   }
 
   addNewContact(values)
@@ -31,7 +31,6 @@ export class ContactInformationComponent
       var obj = new ContactInformation(values.phone, values.fax, values.email);
       this.contacts.push(obj);
     }
-    this.clearForms();
   }
 
   deleteContact(i)
@@ -40,15 +39,13 @@ export class ContactInformationComponent
     if (i > -1) {
       this.contacts.splice(i, 1);
     }
-    this.clearForms();
   }
 
   editContact(i)
   {
-    this.form = new FormGroup({
-      phone: new FormControl(this.contacts[i].phone),
-      fax: new FormControl(this.contacts[i].fax),
-      email: new FormControl(this.contacts[i].email),
+    Object.keys(this.contacts[i]).forEach((controlName: string) =>
+    {
+      this.form.controls[controlName].setValue(this.contacts[i][controlName]);
     });
     this.selectedIndex = i;
   }
@@ -61,11 +58,17 @@ export class ContactInformationComponent
 
   clearForms()
   {
+    this.form.reset();
+  }
+
+  createForms()
+  {
     this.form = new FormGroup({
       phone: new FormControl(""),
       fax: new FormControl(""),
       email: new FormControl(""),
     });
   }
+
 }
 

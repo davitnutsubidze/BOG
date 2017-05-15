@@ -19,10 +19,8 @@ export class ProductComponent implements OnInit
 {
   customer: Customer = new Customer();
   form: FormGroup;
-
   myDatePickerOptions: IMyOptions = {
-    todayBtnTxt: 'Today',
-    dateFormat: 'dd.mm.yyyy'
+    editableDateField: false
   };
 
   constructor(private productService: ProductService)
@@ -34,9 +32,10 @@ export class ProductComponent implements OnInit
     this.createForm(new CreditCard());
   }
 
-  onProductSelect(productType: ProductTypeEnum) {
+  onProductSelect(productType: ProductTypeEnum)
+  {
     let model: CreditCard | Loan | Insurance;
-    switch(productType) {
+    switch (productType) {
       case ProductTypeEnum.CREDIT_CARD:
         model = new CreditCard();
         break;
@@ -51,10 +50,13 @@ export class ProductComponent implements OnInit
     this.createForm(model);
   }
 
-  createForm(model: CreditCard | Loan | Insurance) {
+  createForm(model: CreditCard | Loan | Insurance)
+  {
     let form = new FormGroup({});
-    Object.keys(model).forEach((controlName: any) => {
-      form.addControl(controlName, new FormControl(model[controlName], (control: AbstractControl) => {
+    Object.keys(model).forEach((controlName: any) =>
+    {
+      form.addControl(controlName, new FormControl(model[controlName], (control: AbstractControl) =>
+      {
         return this.validateControl(control, controlName);
       }));
     });
@@ -73,14 +75,13 @@ export class ProductComponent implements OnInit
     return null;
   }
 
-
   addProduct()
   {
-    if(this.form.valid){
+    if (this.form.valid) {
       this.customer.products.push(this.form.value);
       this.productService.updateCustomer(this.customer).then(() =>
       {
-        console.log("sucsess");
+        alert("Successfully saved");
       }, (error) =>
       {
         console.log(error);

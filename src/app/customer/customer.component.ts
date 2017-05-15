@@ -1,6 +1,3 @@
-/**
- * Created by David on 5/9/2017.
- */
 import {Component, OnInit} from '@angular/core';
 import {IMyOptions} from 'mydatepicker';
 import {CustomerService} from './customer.service';
@@ -20,10 +17,6 @@ export class CustomerComponent implements OnInit
   form: FormGroup;
   customer: Customer = new Customer();
   jsonData: any;
-  myDatePickerOptions: IMyOptions = {
-    todayBtnTxt: 'Today',
-    dateFormat: 'dd.mm.yyyy'
-  };
 
   constructor(private activatedRoute: ActivatedRoute, private customerService: CustomerService)
   {
@@ -31,7 +24,8 @@ export class CustomerComponent implements OnInit
 
   ngOnInit()
   {
-    this.activatedRoute.data.subscribe((resolvedData: any) => {
+    this.activatedRoute.data.subscribe((resolvedData: any) =>
+    {
       this.jsonData = resolvedData.jsonData[0];
     });
 
@@ -40,7 +34,7 @@ export class CustomerComponent implements OnInit
 
   validateControl(control: AbstractControl, controlName: string)
   {
-    if (control.value === '' || control.value === null || (Array.isArray(control.value) && !control.value.length) ) {
+    if (control.value === '' || control.value === null || (Array.isArray(control.value) && !control.value.length)) {
       return {
         required: this.jsonData[controlName] && this.jsonData[controlName].errors && this.jsonData[controlName].errors.required
       }
@@ -49,11 +43,14 @@ export class CustomerComponent implements OnInit
     return null;
   }
 
-  createForm() {
+  createForm()
+  {
     let form = new FormGroup({});
 
-    this.customer.getNewCustomerFields().forEach((controlName: any) => {
-      form.addControl(controlName, new FormControl(this.customer[controlName], (control: AbstractControl) => {
+    this.customer.getNewCustomerFields().forEach((controlName: any) =>
+    {
+      form.addControl(controlName, new FormControl(this.customer[controlName], (control: AbstractControl) =>
+      {
         return this.validateControl(control, controlName);
       }));
     });
@@ -61,11 +58,13 @@ export class CustomerComponent implements OnInit
     this.form = form;
   }
 
-  showError(name: string) {
+  showError(name: string)
+  {
     return this.form.controls[name] && this.getError(name) && this.submitted;
   }
 
-  getError(name: string) {
+  getError(name: string)
+  {
     return this.form.controls[name].errors && this.form.controls[name].errors['required'];
   }
 
@@ -73,13 +72,12 @@ export class CustomerComponent implements OnInit
   {
     this.form.controls['contacts'].updateValueAndValidity();
     this.form.controls['addresses'].updateValueAndValidity();
-    if(this.form.valid) {
+    if (this.form.valid) {
       this.customerService.add(this.form.value).then(() =>
       {
-        console.log("sucsess");
+        alert("Successfully saved");
       }, (error) =>
       {
-        console.log(error);
         alert(error.target.error.message);
       })
     }
@@ -87,13 +85,9 @@ export class CustomerComponent implements OnInit
       let alertMessage = this.getError("contacts") || this.getError("addresses");
       if (alertMessage) {
         alert(alertMessage);
-
       }
     }
     this.submitted = true;
   }
-
-
-
 
 }

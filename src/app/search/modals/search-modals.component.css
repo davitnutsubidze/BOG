@@ -1,0 +1,8 @@
+.modal-header {
+  border-bottom: 2px solid #f47920;
+}
+.basic > tbody > tr > td:first-child {
+  width:120px;
+  font-weight:bold;
+
+}

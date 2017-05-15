@@ -4,4 +4,11 @@ table .collapse.in {
 
 .form-control {
   font-weight:normal;
+  padding: 6px 4px;
+}
+.mydp{
+  font-weight:normal !important;
+}
+.glyphicon{
+  cursor: pointer;
 }

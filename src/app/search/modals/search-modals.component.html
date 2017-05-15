@@ -1,0 +1,126 @@
+<div class="modal fade customer-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h1>Customer information</h1>
+      </div>
+      <div class="modal-body">
+        <h2>Personal information</h2>
+        <table class="table basic">
+          <tbody>
+          <tr><td>Name</td><td>{{customer.name}}</td></tr>
+          <tr><td>Last name</td><td>{{customer.lastName}}</td></tr>
+          <tr><td>Personal ID</td><td>{{customer.personalId}}</td></tr>
+          <tr><td>Gender</td><td>{{customer.gender}}</td></tr>
+          <tr><td>Birthday</td><td>{{customer.birthDate.formatted}}</td></tr>
+          <tr><td>Marital status</td><td>{{customer.maritalStatus}}</td></tr>
+          <tr><td>Education</td><td>{{customer.education}}</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Contact information</h2>
+        <table class="table">
+          <thead>
+          <th>Phone number</th>
+          <th>Fax</th>
+          <th>E-mail Adress</th>
+          </thead>
+          <tbody>
+          <tr *ngFor="let contact of customer.contacts">
+            <td>{{contact.phone}}</td>
+            <td>{{contact.fax}}</td>
+            <td>{{contact.email}}</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <h2>Address information</h2>
+        <table class="table">
+          <thead>
+          <th>Phone number</th>
+          <th>Fax</th>
+          <th>E-mail Adress</th>
+          </thead>
+          <tbody>
+          <tr *ngFor="let address of customer.addresses">
+            <td>{{address.city}}</td>
+            <td>{{address.street}}</td>
+            <td>{{address.postal}}</td>
+          </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--product modal-->
+<div class="modal fade product-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" *ngIf="selectedProduct">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h1>Product information</h1>
+      </div>
+      <div class="modal-body">
+        <h2>Basic information</h2>
+        <table class="table basic">
+        <tbody>
+        <tr><td>Registration Date</td><td>{{selectedProduct.registrationDate.formatted}}</td></tr>
+        <tr><td>End date</td><td>{{selectedProduct.registrationDate.formatted}}</td></tr>
+        <tr><td>Price</td><td>{{selectedProduct.price}}</td></tr>
+        <tr><td>Currency</td><td>{{selectedProduct.currency}}</td></tr>
+        </tbody>
+        </table>
+
+        <div [ngSwitch]="selectedProduct.productType">
+          <!--credit card-->
+          <div *ngSwitchCase="0">
+            <h2>Credit Card</h2>
+            <table class="table basic">
+              <tbody>
+              <tr><td>Registration Date</td><td>{{selectedProduct.cardClass}}</td></tr>
+              <tr><td>End date</td><td>{{selectedProduct.cardNumber}}</td></tr>
+              <tr><td>Price</td><td>{{selectedProduct.cardName}}</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!--loan-->
+          <div *ngSwitchCase="1">
+            <h2>Loan</h2>
+            <table class="table basic">
+              <tbody>
+              <tr><td>Loan type</td><td>{{selectedProduct.loanType}}</td></tr>
+              <tr><td>Contract number</td><td>{{selectedProduct.contractNumber}}</td></tr>
+              <tr><td>interest rate</td><td>{{selectedProduct.interestRate}}</td></tr>
+              <tr><td>payment type</td><td>{{selectedProduct.paymentType}}</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!--insurance-->
+          <div *ngSwitchCase="2">
+            <h2>Insurance</h2>
+            <table class="table basic">
+              <tbody>
+              <tr><td>Insurance type</td><td>{{selectedProduct.insuranceType}}</td></tr>
+              <tr><td>Insurer</td><td>{{selectedProduct.insurer}}</td></tr>
+              <tr><td>Policy number</td><td>{{selectedProduct.policyNumber}}</td></tr>
+              <tr><td>Insurance premium</td><td>{{selectedProduct.insurancePremium}}</td></tr>
+              <tr><td>Franchise</td><td>{{selectedProduct.franchise}}</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

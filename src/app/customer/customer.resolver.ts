@@ -4,16 +4,20 @@ import {Observable} from 'rxjs';
 import {Http} from '@angular/http';
 
 @Injectable()
-export class CustomerResolver implements Resolve<any> {
-  constructor(private http: Http) {
+export class CustomerResolver implements Resolve<any>
+{
+  constructor(private http: Http)
+  {
 
   }
 
-  resolve() {
-    // return true;
-    return Observable.zip(this.http.get('assets/data/customer.json').map((response: any) => {
+  resolve()
+  {
+    return Observable.zip(this.http.get('assets/data/customer.json').map((response: any) =>
+    {
       return response.json();
-    })).toPromise().then((data: any) => {
+    })).toPromise().then((data: any) =>
+    {
       return data;
     })
   }

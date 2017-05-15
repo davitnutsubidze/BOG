@@ -16,6 +16,7 @@ import {IndexedDBService} from './shared/services/indexeddb'
 import { AppRoutingModule }     from './app-routing.module';
 import {CustomerResolver} from './customer/customer.resolver';
 import {DBResolver} from './db.resolver';
+import {SearchModalsComponent} from './search/modals/search-modals.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {DBResolver} from './db.resolver';
     SearchComponent,
     ContactInformationComponent,
     AddressInformationComponent,
-    SearchPipe
+    SearchPipe,
+    SearchModalsComponent
   ],
   imports: [
     BrowserModule,

@@ -2,13 +2,13 @@
 <table class="table table-responsive table-hover" *ngIf="customers">
   <thead>
   <tr>
-    <th style="width:30px;">#</th>
+    <th style="width:20px;">#</th>
     <th style="width:120px;">Personal ID</th>
     <th style="width:120px;">Name</th>
     <th style="width:150px;">Last name</th>
-    <th style="width:70px;">Gender</th>
-    <th>Birth date</th>
-    <th>Material Status</th>
+    <th style="width:96px;">Gender</th>
+    <th style="width:150px;">Birth date</th>
+    <th>Marital Status</th>
     <th>Education</th>
     <th>Actions</th>
   </tr>
@@ -21,16 +21,16 @@
     <th><input type="text" class="form-control" placeholder="last name" name="lastname" [(ngModel)]="filterCustomer.lastName"></th>
     <th>
       <select class="form-control" name="gender" [(ngModel)]="filterCustomer.gender">
-        <option value="">Select one</option>
+        <option value="">Select</option>
         <option [ngValue]="item" *ngFor="let item of jsonData.gender.data">{{item}}</option>
       </select>
     </th>
     <th>
-
+      <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="filterCustomer.birthDate"></my-date-picker>
     </th>
     <th>
       <select class="form-control" name="maritalstatus" [(ngModel)]="filterCustomer.maritalStatus">
-        <option value="">Select one</option>
+        <option value="">Select</option>
         <option [ngValue]="item" *ngFor="let item of jsonData.maritalStatus.data">{{item}}</option>
       </select>
     </th>
@@ -46,26 +46,32 @@
   <tbody *ngFor="let customer of customers | searchPipe: filterCustomer; let i = index;">
   <tr  id="row{{i}}" >
     <td>{{i+1}}</td>
-    <td>{{customer.personalid}}</td>
+    <td>{{customer.personalId}}</td>
     <td>{{customer.name}}</td>
     <td>{{customer.lastname}}</td>
     <td>{{customer.gender}}</td>
-    <td>{{customer.birhdate}}</td>
-    <td>{{customer.materialstatus}}</td>
+    <td>{{customer.birthDate.formatted}}</td>
+    <td>{{customer.maritalStatus}}</td>
     <td>{{customer.education}}</td>
-    <td class="clickable" data-toggle="collapse" attr.data-target=".row{{i}}"><i class="glyphicon glyphicon-plus" ></i></td>
+    <td class="clickable" >
+      <i *ngIf="customer.products.length > 0"class="glyphicon glyphicon-plus" data-toggle="collapse" attr.data-target=".row{{i}}"></i>
+      <i class="glyphicon glyphicon-file" data-toggle="modal" data-target=".customer-modal" (click)="selectCustomer(customer)"></i>
+    </td>
   </tr>
-  <tr class="collapse row{{i}}">
+  <tr class="collapse row{{i}}" *ngFor="let product of customer.products; let productIndex = index">
     <td>- </td>
-    <td>data</td>
-    <td>data</td>
-    <td>data</td>
-    <td>data</td>
-    <td>data</td>
-    <td>data</td>
-    <td>data</td>
-    <td>data</td>
+    <td>{{product.registrationDate.formatted}}</td>
+    <td>{{product.endDate.formatted}}</td>
+    <td>{{product.price}}</td>
+    <td>{{product.currency}}</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><i class="glyphicon glyphicon-file" data-toggle="modal" data-target=".product-modal" (click)="selectProduct(customer,productIndex);"></i></td>
   </tr>
   </tbody>
 
 </table>
+
+
+<search-modals [customer]="selectedCustomer" [selectedProduct]="selectedProduct"></search-modals>

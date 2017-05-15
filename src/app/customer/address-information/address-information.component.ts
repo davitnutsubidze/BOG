@@ -1,7 +1,7 @@
 /**
  * Created by David on 5/9/2017.
  */
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import {AddressInformation} from './address-information'
 
@@ -11,7 +11,7 @@ import {AddressInformation} from './address-information'
   styleUrls: ['address-information.component.css']
 })
 
-export class AddressInformationComponent
+export class AddressInformationComponent implements OnInit
 {
   form: FormGroup;
   @Input() addresses: Array<AddressInformation> = [];
@@ -46,15 +46,10 @@ export class AddressInformationComponent
 
   editAdress(i)
   {
-    Object.keys(this.addresses[i]).forEach((controlName: string) => {
+    Object.keys(this.addresses[i]).forEach((controlName: string) =>
+    {
       this.form.controls[controlName].setValue(this.addresses[i][controlName]);
     });
-    // this.form.controls
-    // this.form = new FormGroup({
-    //   city: new FormControl(this.addresses[i].city),
-    //   street: new FormControl(this.addresses[i].street),
-    //   postal: new FormControl(this.addresses[i].postal),
-    // });
     this.selectedIndex = i;
   }
 
@@ -67,10 +62,10 @@ export class AddressInformationComponent
   clearForms()
   {
     this.form.reset();
-    // console.log(this.form);
   }
 
-  createForms() {
+  createForms()
+  {
     this.form = new FormGroup({
       city: new FormControl(""),
       street: new FormControl(""),
