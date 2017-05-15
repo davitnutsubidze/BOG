@@ -3,14 +3,15 @@
   <thead>
   <tr>
     <th style="width:20px;">#</th>
-    <th style="width:120px;">Personal ID</th>
-    <th style="width:120px;">Name</th>
-    <th style="width:150px;">Last name</th>
-    <th style="width:96px;">Gender</th>
-    <th style="width:150px;">Birth date</th>
-    <th>Marital Status</th>
-    <th>Education</th>
-    <th>Actions</th>
+    <!--[ngClass]="{ 'glyphicon-arrow-up': sortReverse, 'glyphicon-arrow-down: !sortReverse }"-->
+    <th style="width:120px;"><span (click)="sort('personalId')" class="sort">Personal ID</span><i [ngClass]="sortArrow('personalId')" class="glyphicon" aria-hidden="true"></i></th>
+    <th style="width:120px;"><span (click)="sort('name')" class="sort">Name</span><i [ngClass]="sortArrow('name')" class="glyphicon" aria-hidden="true"></i></th>
+    <th style="width:150px;"><span (click)="sort('lastName')" class="sort">Last name</span><i [ngClass]="sortArrow('lastName')" class="glyphicon" aria-hidden="true"></i></th>
+    <th style="width:96px;"><span (click)="sort('gender')" class="sort">Gender</span><i [ngClass]="sortArrow('gender')" class="glyphicon" aria-hidden="true"></i></th>
+    <th style="width:150px;"><span (click)="sort('birthDate')" class="sort">Birth date</span><i [ngClass]="sortArrow('birthDate')" class="glyphicon" aria-hidden="true"></i></th>
+    <th><span (click)="sort('maritalStatus')" class="sort">Marital Status</span><i [ngClass]="sortArrow('maritalStatus')" class="glyphicon" aria-hidden="true"></i></th>
+    <th><span (click)="sort('education')" class="sort">Education</span><i [ngClass]="sortArrow('education')" class="glyphicon" aria-hidden="true"></i></th>
+    <th colspan="2">Actions</th>
   </tr>
   </thead>
   <tbody>
@@ -40,10 +41,10 @@
         <option [ngValue]="item" *ngFor="let item of jsonData.education.data">{{item}}</option>
       </select>
     </th>
-    <th></th>
+    <th colspan="2"></th>
   </tr>
   </tbody>
-  <tbody *ngFor="let customer of customers | searchPipe: filterCustomer; let i = index;">
+  <tbody *ngFor="let customer of customers | searchPipe: filterCustomer | orderBy: sortName: sortReverse; let i = index;">
   <tr  id="row{{i}}" >
     <td>{{i+1}}</td>
     <td>{{customer.personalId}}</td>
@@ -54,8 +55,11 @@
     <td>{{customer.maritalStatus}}</td>
     <td>{{customer.education}}</td>
     <td class="clickable" >
-      <i *ngIf="customer.products.length > 0"class="glyphicon glyphicon-plus" data-toggle="collapse" attr.data-target=".row{{i}}"></i>
+      <i *ngIf="customer.products.length > 0" class="glyphicon glyphicon-plus" data-toggle="collapse" attr.data-target=".row{{i}}"></i>
+      </td>
+    <td>
       <i class="glyphicon glyphicon-file" data-toggle="modal" data-target=".customer-modal" (click)="selectCustomer(customer)"></i>
+
     </td>
   </tr>
   <tr class="collapse row{{i}}" *ngFor="let product of customer.products; let productIndex = index">
@@ -64,6 +68,7 @@
     <td>{{product.endDate.formatted}}</td>
     <td>{{product.price}}</td>
     <td>{{product.currency}}</td>
+    <td></td>
     <td></td>
     <td></td>
     <td></td>

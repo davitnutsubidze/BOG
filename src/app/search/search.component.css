@@ -12,3 +12,7 @@ table .collapse.in {
 .glyphicon{
   cursor: pointer;
 }
+
+.sort{
+  cursor: pointer;
+}

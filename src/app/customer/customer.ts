@@ -6,7 +6,7 @@ export interface ICustomer {
   name: string;
   lastName: string;
   personalId: string;
-  birthDate: { formatted?: string};
+  birthDate: { formatted?: string };
   gender: string;
   maritalStatus: string;
   education: string;
@@ -19,7 +19,7 @@ export class Customer implements ICustomer {
   name: string;
   lastName: string;
   personalId: string;
-  birthDate: { formatted?: string};
+  birthDate: { formatted?: string };
   gender: string;
   maritalStatus: string;
   education: string;

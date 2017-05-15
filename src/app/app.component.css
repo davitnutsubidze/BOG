@@ -106,9 +106,8 @@
   width: 1000px;
   background: white;
   padding: 0px 10px;
+  min-height:800px;
 }
-
-
 
 .logo {
   margin-top: -16px;

@@ -20,6 +20,8 @@ export class SearchComponent implements OnInit
   filterCustomer = new Customer();
   selectedCustomer = new Customer();
   selectedProduct: CreditCard | Loan | Insurance;
+  sortName: string;
+  sortReverse: boolean = false;
 
 
   constructor(private activatedRoute: ActivatedRoute, private searchService: SearchService)
@@ -60,4 +62,20 @@ export class SearchComponent implements OnInit
     this.selectedProduct = customer.products[productIndex];
   }
 
+  sort(sortName) {
+    if(this.sortName = sortName) {
+      this.sortReverse = !this.sortReverse;
+    }
+    this.sortName = sortName;
+  }
+
+  sortArrow(sortName) {
+    if(sortName == this.sortName){
+      return this.sortReverse ? 'glyphicon-arrow-up' : 'glyphicon-arrow-down';
+    }
+  }
+
+  showHide() {
+
+  }
 }

@@ -23,8 +23,6 @@ export class AddressInformationComponent implements OnInit
 
   ngOnInit()
   {
-    var obj = new AddressInformation('Tbilisi', 'Qsani Str', 11124);
-    this.addresses.push(obj);
     this.createForms();
   }
 

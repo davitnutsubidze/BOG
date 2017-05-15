@@ -18,6 +18,7 @@ import {CustomerResolver} from './customer/customer.resolver';
 import {DBResolver} from './db.resolver';
 import {SearchModalsComponent} from './search/modals/search-modals.component';
 import {ProductResolver} from './product/product.resolver';
+import { Ng2OrderModule } from 'ng2-order-pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {ProductResolver} from './product/product.resolver';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    MyDatePickerModule
+    MyDatePickerModule,
+    Ng2OrderModule
   ],
   providers: [IndexedDBService, CustomerResolver, ProductResolver, IndexedDBService, DBResolver],
   bootstrap: [AppComponent]

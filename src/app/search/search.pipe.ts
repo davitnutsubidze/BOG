@@ -12,8 +12,8 @@ export class SearchPipe implements PipeTransform
 
     return items
       .filter((item: Customer) => { return item.personalId.indexOf(customer.personalId) !== -1 })
-      .filter((item: Customer) => { return item.name.indexOf(customer.name) !== -1 })
-      .filter((item: Customer) => { return item.lastName.indexOf(customer.lastName) !== -1 })
+      .filter((item: Customer) => { return item.name.toLowerCase().indexOf(customer.name.toLowerCase()) !== -1 })
+      .filter((item: Customer) => { return item.lastName.toLowerCase().indexOf(customer.lastName.toLowerCase()) !== -1 })
       .filter((item: Customer) => { return item.gender.indexOf(customer.gender) !== -1 })
       .filter((item: Customer) => {
         if(customer.birthDate !== null) {

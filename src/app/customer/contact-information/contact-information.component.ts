@@ -20,8 +20,6 @@ export class ContactInformationComponent implements OnInit
 
   ngOnInit()
   {
-    var obj = new ContactInformation(598506636, '+99559850663', 'davit@yahoo.com');
-    this.contacts.push(obj);
     this.createForms();
   }
 
