@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {IMyOptions} from 'mydatepicker';
 import {CustomerService} from './customer.service';
 import {Customer} from './customer';
 import {FormGroup, FormControl, AbstractControl} from '@angular/forms';

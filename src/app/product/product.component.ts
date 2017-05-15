@@ -2,12 +2,11 @@
  * Created by David on 5/9/2017.
  */
 import {Component, OnInit} from '@angular/core';
-import {IMyOptions} from 'mydatepicker'
-import {IndexedDBService} from '../shared/services/indexeddb'
 import {FormGroup, AbstractControl, FormControl} from '@angular/forms';
 import {ProductService} from './product.service';
 import {Customer, ICustomer} from '../customer/customer';
 import {ProductTypeEnum, CreditCard, Loan, Insurance, BaseProduct} from './product';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'product',
@@ -19,16 +18,18 @@ export class ProductComponent implements OnInit
 {
   customer: Customer = new Customer();
   form: FormGroup;
-  myDatePickerOptions: IMyOptions = {
-    editableDateField: false
-  };
+  jsonData: any;
 
-  constructor(private productService: ProductService)
+  constructor(private activatedRoute: ActivatedRoute, private productService: ProductService)
   {
   }
 
   ngOnInit()
   {
+    this.activatedRoute.data.subscribe((resolvedData: any) =>
+    {
+      this.jsonData = resolvedData.jsonData[0];
+    });
     this.createForm(new CreditCard());
   }
 
@@ -66,12 +67,7 @@ export class ProductComponent implements OnInit
 
   validateControl(control: AbstractControl, controlName: string)
   {
-    // if (control.value === '' || control.value === null || (Array.isArray(control.value) && !control.value.length) ) {
-    //   return {
-    //     required: this.jsonData[controlName] && this.jsonData[controlName].errors && this.jsonData[controlName].errors.required
-    //   }
-    // }
-
+    // [WIP]
     return null;
   }
 

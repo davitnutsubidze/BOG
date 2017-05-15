@@ -7,7 +7,6 @@ import {IndexedDBService} from './shared/services/indexeddb'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
 
   constructor(private indexedDBService: IndexedDBService)
   {

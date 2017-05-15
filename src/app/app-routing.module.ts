@@ -9,6 +9,7 @@ import { ProductComponent }      from './product/product.component';
 import { SearchComponent }      from './search/search.component';
 import {CustomerResolver} from './customer/customer.resolver';
 import {DBResolver} from './db.resolver';
+import {ProductResolver} from './product/product.resolver';
 
 const routes: Routes = [
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/customer', pathMatch: 'full' },
       { path: 'customer',  component: CustomerComponent, resolve: { jsonData: CustomerResolver } },
-      { path: 'product', component: ProductComponent },
+      { path: 'product', component: ProductComponent, resolve: { jsonData: ProductResolver } },
       { path: 'search', component: SearchComponent, resolve: { jsonData: CustomerResolver } }
     ],
     resolve: [DBResolver]

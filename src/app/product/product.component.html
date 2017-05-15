@@ -27,9 +27,7 @@
   <div class="col-xs-6">
     <label>Choose product </label>
     <select class="form-control" formControlName="productType" (ngModelChange)="onProductSelect($event)">
-      <option [ngValue]="0">Credit card</option>
-      <option [ngValue]="1">Loan</option>
-      <option [ngValue]="2">Insurance</option>
+      <option [ngValue]="productTypeIndex" *ngFor="let item of jsonData.productType; let productTypeIndex = index" >{{item}}</option>
     </select>
   </div>
 </div>
@@ -54,9 +52,7 @@
   <div class="col-xs-6">
     <label>Product currency</label>
     <select  class="form-control" formControlName="currency">
-      <option value="GEL">GEL</option>
-      <option value="USD">USD</option>
-      <option value="EUR">EUR</option>
+      <option [ngValue]="item" *ngFor="let item of jsonData.currency" >{{item}}</option>
     </select>
   </div>
 </div>
@@ -68,9 +64,7 @@
         <div class="col-xs-6">
           <label>Card class</label>
           <select  class="form-control" formControlName="cardClass">
-            <option value="Visa">Visa</option>
-            <option value="MasterCard">MasterCard</option>
-            <option value="Amex">Amex</option>
+            <option [ngValue]="item" *ngFor="let item of jsonData.cardClass">{{item}}</option>
           </select>
 
         </div>
@@ -93,9 +87,7 @@
         <div class="col-xs-6">
           <label>Loan type</label>
           <select  class="form-control" formControlName="loanType">
-            <option value="Consumer">Consumer</option>
-            <option value="Installment">Installment</option>
-            <option value="Mortgage">Mortgage</option>
+            <option [ngValue]="item" *ngFor="let item of jsonData.loanType">{{item}}</option>
           </select>
 
         </div>
@@ -113,9 +105,7 @@
         <div class="col-xs-6">
           <label>Payment type</label>
           <select  class="form-control" formControlName="paymentType">
-            <option value="Annuity">Annuity</option>
-            <option value="At the end of the term">At the end of the term</option>
-            <option value="Irregular">Irregular</option>
+            <option [ngValue]="item" *ngFor="let item of jsonData.paymentType">{{item}}</option>
           </select>
         </div>
       </div>
@@ -127,17 +117,14 @@
         <div class="col-xs-6">
           <label>Insurance type</label>
           <select  class="form-control" formControlName="insuranceType">
-            <option value="Life">Life</option>
-            <option value="Real estate">Real estate</option>
-            <option value="Car">Car</option>
+            <option [ngValue]="item" *ngFor="let item of jsonData.insuranceType">{{item}}</option>
           </select>
 
         </div>
         <div class="col-xs-6">
           <label>Insurer</label>
           <select  class="form-control" formControlName="insurer">
-            <option value="GPI">GPI</option>
-            <option value="ALDAGI">ALDAGI</option>
+            <option [ngValue]="item" *ngFor="let item of jsonData.insurer">{{item}}</option>
           </select>
         </div>
       </div>

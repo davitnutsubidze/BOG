@@ -17,6 +17,7 @@ import { AppRoutingModule }     from './app-routing.module';
 import {CustomerResolver} from './customer/customer.resolver';
 import {DBResolver} from './db.resolver';
 import {SearchModalsComponent} from './search/modals/search-modals.component';
+import {ProductResolver} from './product/product.resolver';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import {SearchModalsComponent} from './search/modals/search-modals.component';
     AppRoutingModule,
     MyDatePickerModule
   ],
-  providers: [IndexedDBService, CustomerResolver, IndexedDBService, DBResolver],
+  providers: [IndexedDBService, CustomerResolver, ProductResolver, IndexedDBService, DBResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
